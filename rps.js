@@ -32,4 +32,45 @@ function computerPlay() {
     //return result
 }
 
-console.log(computerPlay());
+//function will compare the choice of player and the computer and decide the winner
+function playRound(player, computer) {              //**TO ALEC: ADD CASE SENSITIVITY WHEN YOU RETURN NEXT*/
+    //if player and computer match, its a tie
+    if (player === computer) {
+        return 'A tie!'
+    }
+    //if paper vs rock, paper wins
+    else if (player === 'paper') {
+        if (computer === 'rock') {
+            return 'You Win! Paper beats Rock!';
+        }
+        else {
+            return 'You lose. Scissors beats Paper';
+        }
+    }
+    //if rock vs scissors, rock wins
+    else if (player === 'rock') {
+        if (computer === 'scissors') {
+            return 'You Win! Rock beats Scissors!';
+        }
+        else {
+            return 'You lose. Paper beats Rock.';
+        }
+    }    
+    //if scissors vs paper, scissors wins
+    else if (player === 'scissors') {
+        if (computer === 'paper') {
+            return 'You Win! Scissors beats Paper!';
+        }
+        else {
+            return 'You lose. Rock beats Scissors.';
+        }
+    }
+    else {
+        return 'Invalid selection.';
+    }
+}
+
+const playerSelection = 'scissors';
+const computerSelection = 'scissors';
+
+console.log(playRound(playerSelection, computerSelection));
