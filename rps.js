@@ -33,7 +33,8 @@ function computerPlay() {
 }
 
 //function will compare the choice of player and the computer and decide the winner
-function playRound(player, computer) {              //**TO ALEC: ADD CASE SENSITIVITY WHEN YOU RETURN NEXT*/
+function playRound(player, computer) {
+    //**TO ALEC: ADD CASE SENSITIVITY WHEN YOU RETURN NEXT*/
     //if player and computer match, its a tie
     if (player === computer) {
         return 'A tie!'
@@ -42,8 +43,7 @@ function playRound(player, computer) {              //**TO ALEC: ADD CASE SENSIT
     else if (player === 'paper') {
         if (computer === 'rock') {
             return 'You Win! Paper beats Rock!';
-        }
-        else {
+        } else {
             return 'You lose. Scissors beats Paper';
         }
     }
@@ -51,26 +51,24 @@ function playRound(player, computer) {              //**TO ALEC: ADD CASE SENSIT
     else if (player === 'rock') {
         if (computer === 'scissors') {
             return 'You Win! Rock beats Scissors!';
-        }
-        else {
+        } else {
             return 'You lose. Paper beats Rock.';
         }
-    }    
+    }
     //if scissors vs paper, scissors wins
     else if (player === 'scissors') {
         if (computer === 'paper') {
             return 'You Win! Scissors beats Paper!';
-        }
-        else {
+        } else {
             return 'You lose. Rock beats Scissors.';
         }
-    }
-    else {
+    } else {
         return 'Invalid selection.';
     }
 }
 
-const playerSelection = 'scissors';
-const computerSelection = 'scissors';
 
-console.log(playRound(playerSelection, computerSelection));
+const playerSelection = 'ROCK';
+const computerSelection = computerPlay();
+
+console.log(playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase()));
