@@ -7,14 +7,12 @@
  * Filename: rps.js
  */
 
-//function will select either rock, paper or scissors
+//function will select either rock, paper or scissors randomly
 function computerPlay() {
-    //initilize rock
     let rock = "Rock";
-    //initilize paper
     let paper = "Paper";
-    //initilize scissors
     let scissors = "Scissors";
+    
     //select random number
     let ran_Num = Math.floor(Math.random()*92);
     //if random number is between 0-29, select rock
@@ -34,7 +32,6 @@ function computerPlay() {
 
 //function will compare the choice of player and the computer and decide the winner
 function playRound(player, computer) {
-    //**TO ALEC: ADD CASE SENSITIVITY WHEN YOU RETURN NEXT*/
     //if player and computer match, its a tie
     if (player === computer) {
         return 'A tie!'
@@ -67,8 +64,15 @@ function playRound(player, computer) {
     }
 }
 
+//Initiates 5 games of rock, paper, scissors and asks user for input
+function game() {
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt('Please input either Rock, Paper or Scissors:');
+        const computerSelection = computerPlay();
 
-const playerSelection = 'ROCK';
-const computerSelection = computerPlay();
+        console.log(playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase()));
+    }
+}
 
-console.log(playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase()));
+game();
+
