@@ -7,12 +7,17 @@
  * Filename: rps.js
  */
 
+//Store wins 
+let playerScore = 0;
+let computerScore = 0;
+let tie = 0;
+
 //function will select either rock, paper or scissors randomly
 function computerPlay() {
     let rock = "Rock";
     let paper = "Paper";
     let scissors = "Scissors";
-    
+
     //select random number
     let ran_Num = Math.floor(Math.random()*92);
     //if random number is between 0-29, select rock
@@ -34,29 +39,36 @@ function computerPlay() {
 function playRound(player, computer) {
     //if player and computer match, its a tie
     if (player === computer) {
+        tie++;
         return 'A tie!'
     }
     //if paper vs rock, paper wins
     else if (player === 'paper') {
         if (computer === 'rock') {
+            playerScore++;
             return 'You Win! Paper beats Rock!';
         } else {
+            computerScore++;
             return 'You lose. Scissors beats Paper';
         }
     }
     //if rock vs scissors, rock wins
     else if (player === 'rock') {
         if (computer === 'scissors') {
+            playerScore++;
             return 'You Win! Rock beats Scissors!';
         } else {
+            computerScore++;
             return 'You lose. Paper beats Rock.';
         }
     }
     //if scissors vs paper, scissors wins
     else if (player === 'scissors') {
         if (computer === 'paper') {
+            playerScore++;
             return 'You Win! Scissors beats Paper!';
         } else {
+            computerScore++;
             return 'You lose. Rock beats Scissors.';
         }
     } else {
@@ -74,5 +86,14 @@ function game() {
     }
 }
 
+function displayScore() {
+    console.log('You won ' + playerScore + ' rounds.');
+    console.log('Computer won ' + computerScore + ' rounds.');
+    console.log('You tied ' + tie + ' rounds.');
+}
+
+//Start game and display score
 game();
+displayScore();
+
 
