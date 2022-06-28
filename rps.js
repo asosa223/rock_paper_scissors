@@ -36,7 +36,7 @@ function computerPlay() {
 }
 
 //function will compare the choice of player and the computer and decide the winner
-function playRound(player, computer) {
+/*function playRound(player, computer) {
     //if player and computer match, its a tie
     if (player === computer) {
         tie++;
@@ -74,7 +74,7 @@ function playRound(player, computer) {
     } else {
         return 'Invalid selection.';
     }
-}
+}*/
 
 //Initiates 5 games of rock, paper, scissors and asks user for input
 function game() {
@@ -93,7 +93,16 @@ function displayScore() {
 }
 
 //Start game and display score
-game();
-displayScore();
+//game();
+//displayScore();
 
+const buttons = document.querySelectorAll('button');
+const result = document.querySelector('#result');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        result.textContent = button.id;
+    });
+
+});
 
