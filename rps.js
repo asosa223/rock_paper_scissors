@@ -14,29 +14,27 @@ let tie = 0;
 
 //function will select either rock, paper or scissors randomly
 function computerPlay() {
-    let rock = "Rock";
-    let paper = "Paper";
-    let scissors = "Scissors";
+    const compOptions = ['Rock', 'Paper', 'Scissors'];
 
-    //select random number
-    let ran_Num = Math.floor(Math.random()*92);
-    //if random number is between 0-29, select rock
-    if (ran_Num >= 0 && ran_Num <= 29) {
-        return rock;
-    }
-    //if random number is between 30-60, select paper
-    if (ran_Num >= 30 && ran_Num <= 60) {
-        return paper;
-    }
-    //if random number is between 61-91, select scissors
-    if (ran_Num >= 61 && ran_Num <= 91) {
-        return scissors;
-    }
-    //return result
+    return compOptions[Math.floor(Math.random() * 3)];
+}
+
+function userPlay() {
+    const buttons = document.querySelectorAll('button');
+    let playerSelection = '';
+
+    //Will return button id(rock, paper, scissors) of button clicked and display it on screen
+     buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            playerSelection = button.id;
+        });
+    });
+
+    console.log(playerSelection);
 }
 
 //function will compare the choice of player and the computer and decide the winner
-/*function playRound(player, computer) {
+function playRound(player, computer) {
     //if player and computer match, its a tie
     if (player === computer) {
         tie++;
@@ -74,35 +72,44 @@ function computerPlay() {
     } else {
         return 'Invalid selection.';
     }
-}*/
+}
 
 //Initiates 5 games of rock, paper, scissors and asks user for input
 function game() {
-    for (let i = 0; i < 5; i++) {
+    /*for (let i = 0; i < 5; i++) {
         const playerSelection = prompt('Please input either Rock, Paper or Scissors:');
         const computerSelection = computerPlay();
 
         console.log(playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase()));
-    }
+    }*/
+    const playerSelection = userPlay();
+    const computerSelection = computerPlay();
+
+    return playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
 }
 
 function displayScore() {
+    const results = document.querySelector('#result');
+
     console.log('You won ' + playerScore + ' rounds.');
     console.log('Computer won ' + computerScore + ' rounds.');
     console.log('You tied ' + tie + ' rounds.');
 }
 
+function displayResults() {
+    const pInput = document.querySelector('#pInput');
+    const cInput = document.querySelector('#cInput');
+    
+    pInput.textContent = userPlay();
+    cInput.textContent = computerPlay();
+}
+
 //Start game and display score
+//displayResults();
 //game();
 //displayScore();
+userPlay();
 
-const buttons = document.querySelectorAll('button');
-const result = document.querySelector('#result');
 
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        result.textContent = button.id;
-    });
 
-});
 
