@@ -14,23 +14,36 @@ let tie = 0;
 
 //function will select either rock, paper or scissors randomly
 function computerPlay() {
-    const compOptions = ['Rock', 'Paper', 'Scissors'];
+    
 
     return compOptions[Math.floor(Math.random() * 3)];
 }
 
-function userPlay() {
-    const buttons = document.querySelectorAll('button');
-    let playerSelection = '';
+function play() {
+    const pInput = document.querySelector('#pInput');
+    const cInput = document.querySelector('#cInput');
 
-    //Will return button id(rock, paper, scissors) of button clicked and display it on screen
-     buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-            playerSelection = button.id;
+    const rockBtn = document.querySelector('.rock');
+    const paperBtn = document.querySelector('.paper');
+    const scissorsBtn = document.querySelector('.scissors');
+    const playerOptions = [rockBtn, paperBtn, scissorsBtn];
+    const compOptions = ['Rock', 'Paper', 'Scissors'];
+
+    playerOptions.forEach(option => {
+        option.addEventListener('click', function(){
+            const choiceNum = Math.floor(Math.random() * 3);
+            const compChoice = compOptions[choiceNum];
+
+            console.log(compChoice);
+
+            pInput.textContent = this.innerText;
+            cInput.textContent = compChoice;
+
+            console.log(playRound(this.innerText.toLowerCase(), compChoice.toLocaleLowerCase()));
+
         });
     });
-
-    console.log(playerSelection);
+    
 }
 
 //function will compare the choice of player and the computer and decide the winner
@@ -100,7 +113,7 @@ function displayResults() {
     const pInput = document.querySelector('#pInput');
     const cInput = document.querySelector('#cInput');
     
-    pInput.textContent = userPlay();
+    pInput.textContent = play();
     cInput.textContent = computerPlay();
 }
 
@@ -108,7 +121,8 @@ function displayResults() {
 //displayResults();
 //game();
 //displayScore();
-userPlay();
+play();
+
 
 
 
