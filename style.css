@@ -20,11 +20,16 @@
 }
 
 .display {
-    padding: 50px;
+    padding: 100px;
     border: 2px solid black;
 }
 
 .display-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.display-score {
     display: flex;
     justify-content: space-between;
 }

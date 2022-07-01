@@ -7,17 +7,11 @@
  * Filename: rps.js
  */
 
-//Store wins 
+//Store score 
 let playerScore = 0;
 let computerScore = 0;
 let tie = 0;
-
-//function will select either rock, paper or scissors randomly
-function computerPlay() {
-    
-
-    return compOptions[Math.floor(Math.random() * 3)];
-}
+let rounds = 1;
 
 function play() {
     const pInput = document.querySelector('#pInput');
@@ -34,93 +28,79 @@ function play() {
             const choiceNum = Math.floor(Math.random() * 3);
             const compChoice = compOptions[choiceNum];
 
-            console.log(compChoice);
-
             pInput.textContent = this.innerText;
             cInput.textContent = compChoice;
 
-            console.log(playRound(this.innerText.toLowerCase(), compChoice.toLocaleLowerCase()));
-
+            playRound(this.innerText.toLowerCase(), compChoice.toLowerCase());
+            rounds++;
+            displayScore();
         });
     });
-    
+ 
 }
 
 //function will compare the choice of player and the computer and decide the winner
 function playRound(player, computer) {
+    const results = document.querySelector('#result');
     //if player and computer match, its a tie
     if (player === computer) {
         tie++;
-        return 'A tie!'
+        results.innerText = 'A tie!'
     }
     //if paper vs rock, paper wins
     else if (player === 'paper') {
         if (computer === 'rock') {
             playerScore++;
-            return 'You Win! Paper beats Rock!';
+            results.innerText = 'You Win! Paper beats Rock!';
         } else {
             computerScore++;
-            return 'You lose. Scissors beats Paper';
+            results.innerText =  'You lose. Scissors beats Paper';
         }
     }
     //if rock vs scissors, rock wins
     else if (player === 'rock') {
         if (computer === 'scissors') {
             playerScore++;
-            return 'You Win! Rock beats Scissors!';
+            results.innerText = 'You Win! Rock beats Scissors!';
         } else {
             computerScore++;
-            return 'You lose. Paper beats Rock.';
+            results.innerText = 'You lose. Paper beats Rock.';
         }
     }
     //if scissors vs paper, scissors wins
     else if (player === 'scissors') {
         if (computer === 'paper') {
             playerScore++;
-            return 'You Win! Scissors beats Paper!';
+            results.innerText = 'You Win! Scissors beats Paper!';
         } else {
             computerScore++;
-            return 'You lose. Rock beats Scissors.';
+            results.innerText = 'You lose. Rock beats Scissors.';
         }
     } else {
-        return 'Invalid selection.';
+        results.innerText = 'Invalid selection.';
     }
-}
-
-//Initiates 5 games of rock, paper, scissors and asks user for input
-function game() {
-    /*for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt('Please input either Rock, Paper or Scissors:');
-        const computerSelection = computerPlay();
-
-        console.log(playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase()));
-    }*/
-    const playerSelection = userPlay();
-    const computerSelection = computerPlay();
-
-    return playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
+   displayResults();
 }
 
 function displayScore() {
-    const results = document.querySelector('#result');
+    const pScore = document.querySelector('#pScore');
+    const cScore = document.querySelector('#cScore');
 
-    console.log('You won ' + playerScore + ' rounds.');
-    console.log('Computer won ' + computerScore + ' rounds.');
-    console.log('You tied ' + tie + ' rounds.');
+    pScore.innerText = `Score: ${playerScore}`;
+    cScore.innerText = `Score: ${computerScore}`;
+
 }
 
 function displayResults() {
-    const pInput = document.querySelector('#pInput');
-    const cInput = document.querySelector('#cInput');
+    const results = document.querySelector('#result');
     
-    pInput.textContent = play();
-    cInput.textContent = computerPlay();
+    if(rounds == 5){
+        if (playerScore === computerScore){results.innerText = `YOU TIED!`;}
+        else if (playerScore > computerScore){results.innerText = `YOU WIN!`;}
+        else {results.innerText = `YOU LOSE.`;}
+    }
 }
 
-//Start game and display score
-//displayResults();
-//game();
-//displayScore();
 play();
 
 
