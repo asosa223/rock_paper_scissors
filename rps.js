@@ -16,6 +16,7 @@ let rounds = 1;
 function play() {
     const pInput = document.querySelector('#pInput');
     const cInput = document.querySelector('#cInput');
+    const round = document.querySelector('.round');
 
     const rockBtn = document.querySelector('.rock');
     const paperBtn = document.querySelector('.paper');
@@ -23,17 +24,30 @@ function play() {
     const playerOptions = [rockBtn, paperBtn, scissorsBtn];
     const compOptions = ['Rock', 'Paper', 'Scissors'];
 
+    //Add click event for each button option
     playerOptions.forEach(option => {
         option.addEventListener('click', function(){
             const choiceNum = Math.floor(Math.random() * 3);
             const compChoice = compOptions[choiceNum];
 
+            round.textContent = `Round: ${rounds}`;
             pInput.textContent = this.innerText;
             cInput.textContent = compChoice;
 
             playRound(this.innerText.toLowerCase(), compChoice.toLowerCase());
             rounds++;
             displayScore();
+
+            //Once 5 rounds played, buttons are disabled
+            if (rounds == 6){
+                playerOptions.forEach(option => {option.disabled = true;})
+
+                //Adds click event to refresh game
+                round.innerText = 'Click here to restart game';
+                round.addEventListener('click', () => {
+                    window.location.reload();
+                })
+            }
         });
     });
  
