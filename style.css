@@ -14,14 +14,28 @@
     text-align: center;
     margin: 0;
     height: 100vh;
+    background-color: #4E5340;
+}
+
+h1 {
+    padding-bottom: 50px;
+    font-size: 50px;
 }
 
 .wrapper {
+    background-color: #697268;
+    width: 100%;
+    padding: 80px 0px;
 }
 
 .display {
     padding: 100px;
-    border: 2px solid black;
+    background-color: #95A3A4;
+    font-size: 20px;
+}
+
+#pInput, #cInput {
+    font-weight: bold;
 }
 
 .display-wrap {
@@ -37,9 +51,14 @@
 #buttons {
     display: flex;
     gap: 20vw;
-    padding: 20px;
+    padding-top: 30px;
+    justify-content: space-around;
 }
 
 #buttons button {
     padding: 50px;
+    background-color: #B7D1DA;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
 }
